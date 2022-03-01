@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\People;
-use App\Repositories\Interfaces\SwapiRepositoryInterface;
+use App\Repositories\Interfaces\SwapiPeopleRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
-class SwapiDbRepository implements SwapiRepositoryInterface {
+class SwapiPeopleDbRepository implements SwapiPeopleRepositoryInterface {
 
     public function all() : Collection {
         return People::all();

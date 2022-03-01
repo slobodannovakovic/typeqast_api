@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Facades\Http;
-use App\Repositories\Interfaces\SwapiRepositoryInterface;
+use App\Repositories\Interfaces\SwapiPeopleRepositoryInterface;
 
-class SwapiApiRepository implements SwapiRepositoryInterface {
+class SwapiPeopleApiRepository implements SwapiPeopleRepositoryInterface {
 
     public function all() : array {
         $query_param = request('search') ? '?search='.request('search') : '';

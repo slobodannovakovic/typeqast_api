@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\SwapiDbRepository;
+use App\Repositories\SwapiPeopleDbRepository;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\SwapiApiRepository;
-use App\Repositories\Interfaces\SwapiRepositoryInterface;
+use App\Repositories\SwapiPeopleApiRepository;
+use App\Repositories\Interfaces\SwapiPeopleRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -16,8 +16,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //can be swaped with SwapiDbRepository::class implementation
-        $this->app->bind(SwapiRepositoryInterface::class, SwapiApiRepository::class);
+        //can be swaped with SwapiPeopleDbRepository::class implementation
+        $this->app->bind(SwapiPeopleRepositoryInterface::class, SwapiPeopleApiRepository::class);
     }
 
     /**
