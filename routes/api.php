@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\SwapiPeopleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SwapiFilmsController;
+use App\Http\Controllers\Api\SwapiPeopleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('swapi-people', [SwapiPeopleController::class, 'index']);
 Route::get('swapi-people/{id}', [SwapiPeopleController::class, 'show']);
 
-Route::get('swapi-films', []);
-Route::get('swapi-films/{id}', []);
+Route::get('swapi-films', [SwapiFilmsController::class, 'index']);
+Route::get('swapi-films/{id}', [SwapiFilmsController::class, 'show']);
 
 Route::get('swapi-starships', []);
 Route::get('swapi-starships/{id}', []);
