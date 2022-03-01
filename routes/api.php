@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\PeopleController;
+use App\Http\Controllers\Api\SwapiPeopleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('people', [PeopleController::class, 'index']);
-Route::get('people/{id}', [PeopleController::class, 'show']);
+Route::get('swapi-people', [SwapiPeopleController::class, 'index']);
+Route::get('swapi-people/{id}', [SwapiPeopleController::class, 'show']);
 
-Route::get('films', []);
-Route::get('films/{id}', []);
+Route::get('swapi-films', []);
+Route::get('swapi-films/{id}', []);
 
-Route::get('starships', []);
-Route::get('starships/{id}', []);
+Route::get('swapi-starships', []);
+Route::get('swapi-starships/{id}', []);
 
-Route::get('vehicles', []);
-Route::get('vehicles/{id}', []);
+Route::get('swapi-vehicles', []);
+Route::get('swapi-vehicles/{id}', []);
 
-Route::get('species', []);
-Route::get('species/{id}', []);
+Route::get('swapi-species', []);
+Route::get('swapi-species/{id}', []);
 
-Route::get('planets', []);
-Route::get('planets/{id}', []);
+Route::get('swapi-planets', []);
+Route::get('swapi-planets/{id}', []);
