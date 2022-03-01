@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\PeopleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('people', [PeopleController::class, 'index']);
+Route::get('people/{id}', [PeopleController::class, 'show']);
+
+Route::get('films', []);
+Route::get('films/{id}', []);
+
+Route::get('starships', []);
+Route::get('starships/{id}', []);
+
+Route::get('vehicles', []);
+Route::get('vehicles/{id}', []);
+
+Route::get('species', []);
+Route::get('species/{id}', []);
+
+Route::get('planets', []);
+Route::get('planets/{id}', []);
