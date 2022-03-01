@@ -3,21 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Http;
+use App\Repositories\Interfaces\SwapiRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class SwapiPeopleController extends Controller
 {
-    public function index() : array {
-        $query_param = request('search') ? '?search='.request('search') : '';
+    public function __construct(private SwapiRepositoryInterface $swapiRepository) {}
 
-        return Http::withOptions(['verify' => false])
-                    ->get('http://swapi.dev/api/people'. htmlspecialchars($query_param, ENT_QUOTES))
-                    ->json();
+    public function index() : array|Collection {
+        return $this->swapiRepository->all();
     }
 
-    public function show($id) : array {
-        return Http::withOptions(['verify' => false])
-                    ->get('http://swapi.dev/api/people/'. (int) $id)
-                    ->json();
+    public function show($id) : array|Collection {
+        return $this->swapiRepository->get($id);
     }
 }
