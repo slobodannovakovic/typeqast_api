@@ -13,7 +13,7 @@ class SwapiSpeciesDbRepository implements SwapiSpeciesRepositoryInterface {
     }
 
     public function get($id) : Collection {
-        return Specie::find($id);
+        return Specie::find($id) ?: new Collection;
     }
 
 }

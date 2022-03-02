@@ -13,7 +13,7 @@ class SwapiPeopleDbRepository implements SwapiPeopleRepositoryInterface {
     }
 
     public function get($id) : Collection {
-        return People::find($id);
+        return People::find($id) ?: new Collection;
     }
 
 }

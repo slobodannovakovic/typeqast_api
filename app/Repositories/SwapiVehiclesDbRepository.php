@@ -13,7 +13,7 @@ class SwapiVehiclesDbRepository implements SwapiVehiclesRepositoryInterface {
     }
 
     public function get($id) : Collection {
-        return Vehicle::find($id);
+        return Vehicle::find($id) ?: new Collection;
     }
 
 }

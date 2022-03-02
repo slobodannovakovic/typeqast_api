@@ -13,7 +13,7 @@ class SwapiStarshipsDbRepository implements SwapiStarshipsRepositoryInterface {
     }
 
     public function get($id) : Collection {
-        return Starship::find($id);
+        return Starship::find($id) ?: new Collection;
     }
 
 }

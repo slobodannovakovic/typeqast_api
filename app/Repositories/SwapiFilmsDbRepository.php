@@ -13,7 +13,7 @@ class SwapiFilmsDbRepository implements SwapiFilmsRepositoryInterface {
     }
 
     public function get($id) : Collection {
-        return Film::find($id);
+        return Film::find($id) ?: new Collection;
     }
 
 }
