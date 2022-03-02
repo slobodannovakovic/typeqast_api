@@ -15,6 +15,6 @@ class SwapiFilmsController extends Controller
     }
 
     public function show($id) : array|Collection {
-        return $this->swapiFilmsRepository->get($id);
+        return $this->swapiFilmsRepository->get(id: $id);
     }
 }

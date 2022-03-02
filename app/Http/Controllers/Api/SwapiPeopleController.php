@@ -15,6 +15,6 @@ class SwapiPeopleController extends Controller
     }
 
     public function show($id) : array|Collection {
-        return $this->swapiPeopleRepository->get($id);
+        return $this->swapiPeopleRepository->get(id: $id);
     }
 }
