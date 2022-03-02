@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SwapiFilmsController;
 use App\Http\Controllers\Api\SwapiPeopleController;
+use App\Http\Controllers\Api\SwapiSpeciesController;
 use App\Http\Controllers\Api\SwapiVehiclesController;
 use App\Http\Controllers\Api\SwapiStarshipsController;
 
@@ -29,8 +30,8 @@ Route::get('swapi-starships/{id}', [SwapiStarshipsController::class, 'show']);
 Route::get('swapi-vehicles', [SwapiVehiclesController::class, 'index']);
 Route::get('swapi-vehicles/{id}', [SwapiVehiclesController::class, 'show']);
 
-Route::get('swapi-species', []);
-Route::get('swapi-species/{id}', []);
+Route::get('swapi-species', [SwapiSpeciesController::class, 'index']);
+Route::get('swapi-species/{id}', [SwapiSpeciesController::class, 'show']);
 
 Route::get('swapi-planets', []);
 Route::get('swapi-planets/{id}', []);

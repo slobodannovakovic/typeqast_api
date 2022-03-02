@@ -7,12 +7,15 @@ use App\Repositories\SwapiFilmsDbRepository;
 use App\Repositories\SwapiFilmsApiRepository;
 use App\Repositories\SwapiPeopleDbRepository;
 use App\Repositories\SwapiPeopleApiRepository;
+use App\Repositories\SwapiSpeciesDbRepository;
+use App\Repositories\SwapiSpeciesApiRepository;
 use App\Repositories\SwapiVehiclesDbRepository;
 use App\Repositories\SwapiStarshipsDbRepository;
 use App\Repositories\SwapiVehiclesApiRepository;
 use App\Repositories\SwapiStarshipsApiRepository;
 use App\Repositories\Interfaces\SwapiFilmsRepositoryInterface;
 use App\Repositories\Interfaces\SwapiPeopleRepositoryInterface;
+use App\Repositories\Interfaces\SwapiSpeciesRepositoryInterface;
 use App\Repositories\Interfaces\SwapiVehiclesRepositoryInterface;
 use App\Repositories\Interfaces\SwapiStarshipsRepositoryInterface;
 
@@ -36,6 +39,9 @@ class RepositoryServiceProvider extends ServiceProvider
 
         //can be swaped with SwapiVehiclesDbRepository::class implementation
         $this->app->bind(SwapiVehiclesRepositoryInterface::class, SwapiVehiclesApiRepository::class);
+
+        //can be swaped with SwapiSpeciesDbRepository::class implementation
+        $this->app->bind(SwapiSpeciesRepositoryInterface::class, SwapiSpeciesApiRepository::class);
     }
 
     /**
