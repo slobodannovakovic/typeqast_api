@@ -2,23 +2,19 @@
 
 namespace App\Repositories;
 
-use Illuminate\Support\Facades\Http;
+use App\Services\SwapiHttpService;
 use App\Repositories\Interfaces\SwapiFilmsRepositoryInterface;
 
 class SwapiFilmsApiRepository implements SwapiFilmsRepositoryInterface {
 
-    public function all() : array {
-        $query_param = request('search') ? '?search='.request('search') : '';
+    public function __construct(private SwapiHttpService $httpService) {}
 
-        return Http::withOptions(['verify' => false])
-                    ->get('http://swapi.dev/api/films'. htmlspecialchars($query_param, ENT_QUOTES))
-                    ->json();
+    public function all() : array {
+        return $this->httpService->all(resource: 'films');
     }
 
     public function get($id) : array {
-        return Http::withOptions(['verify' => false])
-                    ->get('http://swapi.dev/api/films/'. (int) $id)
-                    ->json();
+        return $this->httpService->get(id: $id, resource: 'films');
     }
 
 }
