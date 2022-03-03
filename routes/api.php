@@ -19,6 +19,8 @@ use App\Http\Controllers\Api\SwapiStarshipsController;
 |
 */
 
+//filter films by character example http://typeqast-api.localhost/api/swapi-films?filter=1&character=dart
+
 Route::get('swapi-people', [SwapiPeopleController::class, 'index']);
 Route::get('swapi-people/{id}', [SwapiPeopleController::class, 'show']);
 

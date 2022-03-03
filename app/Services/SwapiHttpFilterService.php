@@ -9,7 +9,7 @@ class SwapiHttpFilterService {
 
         $filter_results = [];
         
-        foreach(request()->except('filter') as $search_key => $search_value) {
+        foreach(request()->except('filter', 'search') as $search_key => $search_value) {
             $filter_class = 'App\\Filters\\'.ucfirst($resource).'\\'.ucfirst($search_key).'Filter';
 
             if(count($filter_results))
