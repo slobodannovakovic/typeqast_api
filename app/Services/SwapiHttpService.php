@@ -32,4 +32,17 @@ class SwapiHttpService {
                     ->json();
     }
 
+    public function getByPage(string $page_url = null, string $resource = null, $page_number = null) : array {
+        if($page_url) {
+            return Http::withOptions(['verify' => false])
+                    ->get($page_url)
+                    ->json();
+        }
+
+        return Http::withOptions(['verify' => false])
+                    ->get(config('swapi_api.root_url').$resource.'/?page='.$page_number)
+                    ->json();
+        
+    }
+
 }
