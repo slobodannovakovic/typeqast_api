@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\SwapiStarshipsController;
 
 //filter films by character example http://typeqast-api.localhost/api/swapi-films?filter=1&character=dart
 
+//filter planets by created date exapmle http://typeqast-api.localhost/api/swapi-planets?filter=1&created=12/04/2014
+
 Route::get('swapi-people', [SwapiPeopleController::class, 'index']);
 Route::get('swapi-people/{id}', [SwapiPeopleController::class, 'show']);
 

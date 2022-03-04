@@ -12,6 +12,6 @@ abstract class SwapiFilter {
         protected SwapiHttpService $httpService
     ) {}
 
-    abstract public function handle();
+    abstract public function handle() : array;
 
 }
