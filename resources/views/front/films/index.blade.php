@@ -1,7 +1,10 @@
-<h1>radi</h1>
+@extends('layouts.front')
 
-@forelse($films as $film)
-<p>{{ $film['title'] }}</p>
-@empty
-<p>No films</p>
-@endforelse
+
+@section('content')
+
+    <h1 class="text-3xl text-center">Swapi Films List</h1>
+
+    <table-component films="{{ json_encode($films) }}"></table-component>
+
+@endsection
