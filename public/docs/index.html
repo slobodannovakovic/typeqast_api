@@ -1,0 +1,3320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://typeqast-api.localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.24.0.js"></script>
+
+    <script src="../docs/js/theme-default-3.24.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="films">
+                    <a href="#films">Films</a>
+                </li>
+                                    <ul id="tocify-subheader-films" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="films-GETapi-swapi-films">
+                        <a href="#films-GETapi-swapi-films">GET api/swapi-films</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="films-GETapi-swapi-films--id-">
+                        <a href="#films-GETapi-swapi-films--id-">GET api/swapi-films/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="planets">
+                    <a href="#planets">Planets</a>
+                </li>
+                                    <ul id="tocify-subheader-planets" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="planets-GETapi-swapi-planets">
+                        <a href="#planets-GETapi-swapi-planets">GET api/swapi-planets</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="planets-GETapi-swapi-planets--id-">
+                        <a href="#planets-GETapi-swapi-planets--id-">GET api/swapi-planets/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="poeple">
+                    <a href="#poeple">Poeple</a>
+                </li>
+                                    <ul id="tocify-subheader-poeple" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="poeple-GETapi-swapi-people">
+                        <a href="#poeple-GETapi-swapi-people">GET api/swapi-people</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="poeple-GETapi-swapi-people--id-">
+                        <a href="#poeple-GETapi-swapi-people--id-">GET api/swapi-people/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="species">
+                    <a href="#species">Species</a>
+                </li>
+                                    <ul id="tocify-subheader-species" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="species-GETapi-swapi-species">
+                        <a href="#species-GETapi-swapi-species">GET api/swapi-species</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="species-GETapi-swapi-species--id-">
+                        <a href="#species-GETapi-swapi-species--id-">GET api/swapi-species/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="starships">
+                    <a href="#starships">Starships</a>
+                </li>
+                                    <ul id="tocify-subheader-starships" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="starships-GETapi-swapi-starships">
+                        <a href="#starships-GETapi-swapi-starships">GET api/swapi-starships</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="starships-GETapi-swapi-starships--id-">
+                        <a href="#starships-GETapi-swapi-starships--id-">GET api/swapi-starships/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-7" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="vehicles">
+                    <a href="#vehicles">Vehicles</a>
+                </li>
+                                    <ul id="tocify-subheader-vehicles" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="vehicles-GETapi-swapi-vehicles">
+                        <a href="#vehicles-GETapi-swapi-vehicles">GET api/swapi-vehicles</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="vehicles-GETapi-swapi-vehicles--id-">
+                        <a href="#vehicles-GETapi-swapi-vehicles--id-">GET api/swapi-vehicles/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: March 5 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://typeqast-api.localhost</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="films">Films</h1>
+
+    
+
+            <h2 id="films-GETapi-swapi-films">GET api/swapi-films</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-films">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-films" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-films"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-films">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 57
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;count&quot;: 6,
+    &quot;next&quot;: null,
+    &quot;previous&quot;: null,
+    &quot;results&quot;: [
+        {
+            &quot;title&quot;: &quot;A New Hope&quot;,
+            &quot;episode_id&quot;: 4,
+            &quot;opening_crawl&quot;: &quot;It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal secret\r\nplans to the Empire&#039;s\r\nultimate weapon, the DEATH\r\nSTAR, an armored space\r\nstation with enough power\r\nto destroy an entire planet.\r\n\r\nPursued by the Empire&#039;s\r\nsinister agents, Princess\r\nLeia races home aboard her\r\nstarship, custodian of the\r\nstolen plans that can save her\r\npeople and restore\r\nfreedom to the galaxy....&quot;,
+            &quot;director&quot;: &quot;George Lucas&quot;,
+            &quot;producer&quot;: &quot;Gary Kurtz, Rick McCallum&quot;,
+            &quot;release_date&quot;: &quot;1977-05-25&quot;,
+            &quot;characters&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/4/&quot;,
+                &quot;https://swapi.dev/api/people/5/&quot;,
+                &quot;https://swapi.dev/api/people/6/&quot;,
+                &quot;https://swapi.dev/api/people/7/&quot;,
+                &quot;https://swapi.dev/api/people/8/&quot;,
+                &quot;https://swapi.dev/api/people/9/&quot;,
+                &quot;https://swapi.dev/api/people/10/&quot;,
+                &quot;https://swapi.dev/api/people/12/&quot;,
+                &quot;https://swapi.dev/api/people/13/&quot;,
+                &quot;https://swapi.dev/api/people/14/&quot;,
+                &quot;https://swapi.dev/api/people/15/&quot;,
+                &quot;https://swapi.dev/api/people/16/&quot;,
+                &quot;https://swapi.dev/api/people/18/&quot;,
+                &quot;https://swapi.dev/api/people/19/&quot;,
+                &quot;https://swapi.dev/api/people/81/&quot;
+            ],
+            &quot;planets&quot;: [
+                &quot;https://swapi.dev/api/planets/1/&quot;,
+                &quot;https://swapi.dev/api/planets/2/&quot;,
+                &quot;https://swapi.dev/api/planets/3/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/2/&quot;,
+                &quot;https://swapi.dev/api/starships/3/&quot;,
+                &quot;https://swapi.dev/api/starships/5/&quot;,
+                &quot;https://swapi.dev/api/starships/9/&quot;,
+                &quot;https://swapi.dev/api/starships/10/&quot;,
+                &quot;https://swapi.dev/api/starships/11/&quot;,
+                &quot;https://swapi.dev/api/starships/12/&quot;,
+                &quot;https://swapi.dev/api/starships/13/&quot;
+            ],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/4/&quot;,
+                &quot;https://swapi.dev/api/vehicles/6/&quot;,
+                &quot;https://swapi.dev/api/vehicles/7/&quot;,
+                &quot;https://swapi.dev/api/vehicles/8/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/1/&quot;,
+                &quot;https://swapi.dev/api/species/2/&quot;,
+                &quot;https://swapi.dev/api/species/3/&quot;,
+                &quot;https://swapi.dev/api/species/4/&quot;,
+                &quot;https://swapi.dev/api/species/5/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T14:23:31.880000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T19:49:45.256000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/films/1/&quot;
+        },
+        {
+            &quot;title&quot;: &quot;The Empire Strikes Back&quot;,
+            &quot;episode_id&quot;: 5,
+            &quot;opening_crawl&quot;: &quot;It is a dark time for the\r\nRebellion. Although the Death\r\nStar has been destroyed,\r\nImperial troops have driven the\r\nRebel forces from their hidden\r\nbase and pursued them across\r\nthe galaxy.\r\n\r\nEvading the dreaded Imperial\r\nStarfleet, a group of freedom\r\nfighters led by Luke Skywalker\r\nhas established a new secret\r\nbase on the remote ice world\r\nof Hoth.\r\n\r\nThe evil lord Darth Vader,\r\nobsessed with finding young\r\nSkywalker, has dispatched\r\nthousands of remote probes into\r\nthe far reaches of space....&quot;,
+            &quot;director&quot;: &quot;Irvin Kershner&quot;,
+            &quot;producer&quot;: &quot;Gary Kurtz, Rick McCallum&quot;,
+            &quot;release_date&quot;: &quot;1980-05-17&quot;,
+            &quot;characters&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/4/&quot;,
+                &quot;https://swapi.dev/api/people/5/&quot;,
+                &quot;https://swapi.dev/api/people/10/&quot;,
+                &quot;https://swapi.dev/api/people/13/&quot;,
+                &quot;https://swapi.dev/api/people/14/&quot;,
+                &quot;https://swapi.dev/api/people/18/&quot;,
+                &quot;https://swapi.dev/api/people/20/&quot;,
+                &quot;https://swapi.dev/api/people/21/&quot;,
+                &quot;https://swapi.dev/api/people/22/&quot;,
+                &quot;https://swapi.dev/api/people/23/&quot;,
+                &quot;https://swapi.dev/api/people/24/&quot;,
+                &quot;https://swapi.dev/api/people/25/&quot;,
+                &quot;https://swapi.dev/api/people/26/&quot;
+            ],
+            &quot;planets&quot;: [
+                &quot;https://swapi.dev/api/planets/4/&quot;,
+                &quot;https://swapi.dev/api/planets/5/&quot;,
+                &quot;https://swapi.dev/api/planets/6/&quot;,
+                &quot;https://swapi.dev/api/planets/27/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/3/&quot;,
+                &quot;https://swapi.dev/api/starships/10/&quot;,
+                &quot;https://swapi.dev/api/starships/11/&quot;,
+                &quot;https://swapi.dev/api/starships/12/&quot;,
+                &quot;https://swapi.dev/api/starships/15/&quot;,
+                &quot;https://swapi.dev/api/starships/17/&quot;,
+                &quot;https://swapi.dev/api/starships/21/&quot;,
+                &quot;https://swapi.dev/api/starships/22/&quot;,
+                &quot;https://swapi.dev/api/starships/23/&quot;
+            ],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/8/&quot;,
+                &quot;https://swapi.dev/api/vehicles/14/&quot;,
+                &quot;https://swapi.dev/api/vehicles/16/&quot;,
+                &quot;https://swapi.dev/api/vehicles/18/&quot;,
+                &quot;https://swapi.dev/api/vehicles/19/&quot;,
+                &quot;https://swapi.dev/api/vehicles/20/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/1/&quot;,
+                &quot;https://swapi.dev/api/species/2/&quot;,
+                &quot;https://swapi.dev/api/species/3/&quot;,
+                &quot;https://swapi.dev/api/species/6/&quot;,
+                &quot;https://swapi.dev/api/species/7/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-12T11:26:24.656000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-15T13:07:53.386000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/films/2/&quot;
+        },
+        {
+            &quot;title&quot;: &quot;Return of the Jedi&quot;,
+            &quot;episode_id&quot;: 6,
+            &quot;opening_crawl&quot;: &quot;Luke Skywalker has returned to\r\nhis home planet of Tatooine in\r\nan attempt to rescue his\r\nfriend Han Solo from the\r\nclutches of the vile gangster\r\nJabba the Hutt.\r\n\r\nLittle does Luke know that the\r\nGALACTIC EMPIRE has secretly\r\nbegun construction on a new\r\narmored space station even\r\nmore powerful than the first\r\ndreaded Death Star.\r\n\r\nWhen completed, this ultimate\r\nweapon will spell certain doom\r\nfor the small band of rebels\r\nstruggling to restore freedom\r\nto the galaxy...&quot;,
+            &quot;director&quot;: &quot;Richard Marquand&quot;,
+            &quot;producer&quot;: &quot;Howard G. Kazanjian, George Lucas, Rick McCallum&quot;,
+            &quot;release_date&quot;: &quot;1983-05-25&quot;,
+            &quot;characters&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/4/&quot;,
+                &quot;https://swapi.dev/api/people/5/&quot;,
+                &quot;https://swapi.dev/api/people/10/&quot;,
+                &quot;https://swapi.dev/api/people/13/&quot;,
+                &quot;https://swapi.dev/api/people/14/&quot;,
+                &quot;https://swapi.dev/api/people/16/&quot;,
+                &quot;https://swapi.dev/api/people/18/&quot;,
+                &quot;https://swapi.dev/api/people/20/&quot;,
+                &quot;https://swapi.dev/api/people/21/&quot;,
+                &quot;https://swapi.dev/api/people/22/&quot;,
+                &quot;https://swapi.dev/api/people/25/&quot;,
+                &quot;https://swapi.dev/api/people/27/&quot;,
+                &quot;https://swapi.dev/api/people/28/&quot;,
+                &quot;https://swapi.dev/api/people/29/&quot;,
+                &quot;https://swapi.dev/api/people/30/&quot;,
+                &quot;https://swapi.dev/api/people/31/&quot;,
+                &quot;https://swapi.dev/api/people/45/&quot;
+            ],
+            &quot;planets&quot;: [
+                &quot;https://swapi.dev/api/planets/1/&quot;,
+                &quot;https://swapi.dev/api/planets/5/&quot;,
+                &quot;https://swapi.dev/api/planets/7/&quot;,
+                &quot;https://swapi.dev/api/planets/8/&quot;,
+                &quot;https://swapi.dev/api/planets/9/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/2/&quot;,
+                &quot;https://swapi.dev/api/starships/3/&quot;,
+                &quot;https://swapi.dev/api/starships/10/&quot;,
+                &quot;https://swapi.dev/api/starships/11/&quot;,
+                &quot;https://swapi.dev/api/starships/12/&quot;,
+                &quot;https://swapi.dev/api/starships/15/&quot;,
+                &quot;https://swapi.dev/api/starships/17/&quot;,
+                &quot;https://swapi.dev/api/starships/22/&quot;,
+                &quot;https://swapi.dev/api/starships/23/&quot;,
+                &quot;https://swapi.dev/api/starships/27/&quot;,
+                &quot;https://swapi.dev/api/starships/28/&quot;,
+                &quot;https://swapi.dev/api/starships/29/&quot;
+            ],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/8/&quot;,
+                &quot;https://swapi.dev/api/vehicles/16/&quot;,
+                &quot;https://swapi.dev/api/vehicles/18/&quot;,
+                &quot;https://swapi.dev/api/vehicles/19/&quot;,
+                &quot;https://swapi.dev/api/vehicles/24/&quot;,
+                &quot;https://swapi.dev/api/vehicles/25/&quot;,
+                &quot;https://swapi.dev/api/vehicles/26/&quot;,
+                &quot;https://swapi.dev/api/vehicles/30/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/1/&quot;,
+                &quot;https://swapi.dev/api/species/2/&quot;,
+                &quot;https://swapi.dev/api/species/3/&quot;,
+                &quot;https://swapi.dev/api/species/5/&quot;,
+                &quot;https://swapi.dev/api/species/6/&quot;,
+                &quot;https://swapi.dev/api/species/8/&quot;,
+                &quot;https://swapi.dev/api/species/9/&quot;,
+                &quot;https://swapi.dev/api/species/10/&quot;,
+                &quot;https://swapi.dev/api/species/15/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-18T10:39:33.255000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T09:48:37.462000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/films/3/&quot;
+        },
+        {
+            &quot;title&quot;: &quot;The Phantom Menace&quot;,
+            &quot;episode_id&quot;: 1,
+            &quot;opening_crawl&quot;: &quot;Turmoil has engulfed the\r\nGalactic Republic. The taxation\r\nof trade routes to outlying star\r\nsystems is in dispute.\r\n\r\nHoping to resolve the matter\r\nwith a blockade of deadly\r\nbattleships, the greedy Trade\r\nFederation has stopped all\r\nshipping to the small planet\r\nof Naboo.\r\n\r\nWhile the Congress of the\r\nRepublic endlessly debates\r\nthis alarming chain of events,\r\nthe Supreme Chancellor has\r\nsecretly dispatched two Jedi\r\nKnights, the guardians of\r\npeace and justice in the\r\ngalaxy, to settle the conflict....&quot;,
+            &quot;director&quot;: &quot;George Lucas&quot;,
+            &quot;producer&quot;: &quot;Rick McCallum&quot;,
+            &quot;release_date&quot;: &quot;1999-05-19&quot;,
+            &quot;characters&quot;: [
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/10/&quot;,
+                &quot;https://swapi.dev/api/people/11/&quot;,
+                &quot;https://swapi.dev/api/people/16/&quot;,
+                &quot;https://swapi.dev/api/people/20/&quot;,
+                &quot;https://swapi.dev/api/people/21/&quot;,
+                &quot;https://swapi.dev/api/people/32/&quot;,
+                &quot;https://swapi.dev/api/people/33/&quot;,
+                &quot;https://swapi.dev/api/people/34/&quot;,
+                &quot;https://swapi.dev/api/people/35/&quot;,
+                &quot;https://swapi.dev/api/people/36/&quot;,
+                &quot;https://swapi.dev/api/people/37/&quot;,
+                &quot;https://swapi.dev/api/people/38/&quot;,
+                &quot;https://swapi.dev/api/people/39/&quot;,
+                &quot;https://swapi.dev/api/people/40/&quot;,
+                &quot;https://swapi.dev/api/people/41/&quot;,
+                &quot;https://swapi.dev/api/people/42/&quot;,
+                &quot;https://swapi.dev/api/people/43/&quot;,
+                &quot;https://swapi.dev/api/people/44/&quot;,
+                &quot;https://swapi.dev/api/people/46/&quot;,
+                &quot;https://swapi.dev/api/people/47/&quot;,
+                &quot;https://swapi.dev/api/people/48/&quot;,
+                &quot;https://swapi.dev/api/people/49/&quot;,
+                &quot;https://swapi.dev/api/people/50/&quot;,
+                &quot;https://swapi.dev/api/people/51/&quot;,
+                &quot;https://swapi.dev/api/people/52/&quot;,
+                &quot;https://swapi.dev/api/people/53/&quot;,
+                &quot;https://swapi.dev/api/people/54/&quot;,
+                &quot;https://swapi.dev/api/people/55/&quot;,
+                &quot;https://swapi.dev/api/people/56/&quot;,
+                &quot;https://swapi.dev/api/people/57/&quot;,
+                &quot;https://swapi.dev/api/people/58/&quot;,
+                &quot;https://swapi.dev/api/people/59/&quot;
+            ],
+            &quot;planets&quot;: [
+                &quot;https://swapi.dev/api/planets/1/&quot;,
+                &quot;https://swapi.dev/api/planets/8/&quot;,
+                &quot;https://swapi.dev/api/planets/9/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/31/&quot;,
+                &quot;https://swapi.dev/api/starships/32/&quot;,
+                &quot;https://swapi.dev/api/starships/39/&quot;,
+                &quot;https://swapi.dev/api/starships/40/&quot;,
+                &quot;https://swapi.dev/api/starships/41/&quot;
+            ],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/33/&quot;,
+                &quot;https://swapi.dev/api/vehicles/34/&quot;,
+                &quot;https://swapi.dev/api/vehicles/35/&quot;,
+                &quot;https://swapi.dev/api/vehicles/36/&quot;,
+                &quot;https://swapi.dev/api/vehicles/37/&quot;,
+                &quot;https://swapi.dev/api/vehicles/38/&quot;,
+                &quot;https://swapi.dev/api/vehicles/42/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/1/&quot;,
+                &quot;https://swapi.dev/api/species/2/&quot;,
+                &quot;https://swapi.dev/api/species/6/&quot;,
+                &quot;https://swapi.dev/api/species/11/&quot;,
+                &quot;https://swapi.dev/api/species/12/&quot;,
+                &quot;https://swapi.dev/api/species/13/&quot;,
+                &quot;https://swapi.dev/api/species/14/&quot;,
+                &quot;https://swapi.dev/api/species/15/&quot;,
+                &quot;https://swapi.dev/api/species/16/&quot;,
+                &quot;https://swapi.dev/api/species/17/&quot;,
+                &quot;https://swapi.dev/api/species/18/&quot;,
+                &quot;https://swapi.dev/api/species/19/&quot;,
+                &quot;https://swapi.dev/api/species/20/&quot;,
+                &quot;https://swapi.dev/api/species/21/&quot;,
+                &quot;https://swapi.dev/api/species/22/&quot;,
+                &quot;https://swapi.dev/api/species/23/&quot;,
+                &quot;https://swapi.dev/api/species/24/&quot;,
+                &quot;https://swapi.dev/api/species/25/&quot;,
+                &quot;https://swapi.dev/api/species/26/&quot;,
+                &quot;https://swapi.dev/api/species/27/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-19T16:52:55.740000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T10:54:07.216000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/films/4/&quot;
+        },
+        {
+            &quot;title&quot;: &quot;Attack of the Clones&quot;,
+            &quot;episode_id&quot;: 2,
+            &quot;opening_crawl&quot;: &quot;There is unrest in the Galactic\r\nSenate. Several thousand solar\r\nsystems have declared their\r\nintentions to leave the Republic.\r\n\r\nThis separatist movement,\r\nunder the leadership of the\r\nmysterious Count Dooku, has\r\nmade it difficult for the limited\r\nnumber of Jedi Knights to maintain \r\npeace and order in the galaxy.\r\n\r\nSenator Amidala, the former\r\nQueen of Naboo, is returning\r\nto the Galactic Senate to vote\r\non the critical issue of creating\r\nan ARMY OF THE REPUBLIC\r\nto assist the overwhelmed\r\nJedi....&quot;,
+            &quot;director&quot;: &quot;George Lucas&quot;,
+            &quot;producer&quot;: &quot;Rick McCallum&quot;,
+            &quot;release_date&quot;: &quot;2002-05-16&quot;,
+            &quot;characters&quot;: [
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/6/&quot;,
+                &quot;https://swapi.dev/api/people/7/&quot;,
+                &quot;https://swapi.dev/api/people/10/&quot;,
+                &quot;https://swapi.dev/api/people/11/&quot;,
+                &quot;https://swapi.dev/api/people/20/&quot;,
+                &quot;https://swapi.dev/api/people/21/&quot;,
+                &quot;https://swapi.dev/api/people/22/&quot;,
+                &quot;https://swapi.dev/api/people/33/&quot;,
+                &quot;https://swapi.dev/api/people/35/&quot;,
+                &quot;https://swapi.dev/api/people/36/&quot;,
+                &quot;https://swapi.dev/api/people/40/&quot;,
+                &quot;https://swapi.dev/api/people/43/&quot;,
+                &quot;https://swapi.dev/api/people/46/&quot;,
+                &quot;https://swapi.dev/api/people/51/&quot;,
+                &quot;https://swapi.dev/api/people/52/&quot;,
+                &quot;https://swapi.dev/api/people/53/&quot;,
+                &quot;https://swapi.dev/api/people/58/&quot;,
+                &quot;https://swapi.dev/api/people/59/&quot;,
+                &quot;https://swapi.dev/api/people/60/&quot;,
+                &quot;https://swapi.dev/api/people/61/&quot;,
+                &quot;https://swapi.dev/api/people/62/&quot;,
+                &quot;https://swapi.dev/api/people/63/&quot;,
+                &quot;https://swapi.dev/api/people/64/&quot;,
+                &quot;https://swapi.dev/api/people/65/&quot;,
+                &quot;https://swapi.dev/api/people/66/&quot;,
+                &quot;https://swapi.dev/api/people/67/&quot;,
+                &quot;https://swapi.dev/api/people/68/&quot;,
+                &quot;https://swapi.dev/api/people/69/&quot;,
+                &quot;https://swapi.dev/api/people/70/&quot;,
+                &quot;https://swapi.dev/api/people/71/&quot;,
+                &quot;https://swapi.dev/api/people/72/&quot;,
+                &quot;https://swapi.dev/api/people/73/&quot;,
+                &quot;https://swapi.dev/api/people/74/&quot;,
+                &quot;https://swapi.dev/api/people/75/&quot;,
+                &quot;https://swapi.dev/api/people/76/&quot;,
+                &quot;https://swapi.dev/api/people/77/&quot;,
+                &quot;https://swapi.dev/api/people/78/&quot;,
+                &quot;https://swapi.dev/api/people/82/&quot;
+            ],
+            &quot;planets&quot;: [
+                &quot;https://swapi.dev/api/planets/1/&quot;,
+                &quot;https://swapi.dev/api/planets/8/&quot;,
+                &quot;https://swapi.dev/api/planets/9/&quot;,
+                &quot;https://swapi.dev/api/planets/10/&quot;,
+                &quot;https://swapi.dev/api/planets/11/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/21/&quot;,
+                &quot;https://swapi.dev/api/starships/32/&quot;,
+                &quot;https://swapi.dev/api/starships/39/&quot;,
+                &quot;https://swapi.dev/api/starships/43/&quot;,
+                &quot;https://swapi.dev/api/starships/47/&quot;,
+                &quot;https://swapi.dev/api/starships/48/&quot;,
+                &quot;https://swapi.dev/api/starships/49/&quot;,
+                &quot;https://swapi.dev/api/starships/52/&quot;,
+                &quot;https://swapi.dev/api/starships/58/&quot;
+            ],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/4/&quot;,
+                &quot;https://swapi.dev/api/vehicles/44/&quot;,
+                &quot;https://swapi.dev/api/vehicles/45/&quot;,
+                &quot;https://swapi.dev/api/vehicles/46/&quot;,
+                &quot;https://swapi.dev/api/vehicles/50/&quot;,
+                &quot;https://swapi.dev/api/vehicles/51/&quot;,
+                &quot;https://swapi.dev/api/vehicles/53/&quot;,
+                &quot;https://swapi.dev/api/vehicles/54/&quot;,
+                &quot;https://swapi.dev/api/vehicles/55/&quot;,
+                &quot;https://swapi.dev/api/vehicles/56/&quot;,
+                &quot;https://swapi.dev/api/vehicles/57/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/1/&quot;,
+                &quot;https://swapi.dev/api/species/2/&quot;,
+                &quot;https://swapi.dev/api/species/6/&quot;,
+                &quot;https://swapi.dev/api/species/12/&quot;,
+                &quot;https://swapi.dev/api/species/13/&quot;,
+                &quot;https://swapi.dev/api/species/15/&quot;,
+                &quot;https://swapi.dev/api/species/28/&quot;,
+                &quot;https://swapi.dev/api/species/29/&quot;,
+                &quot;https://swapi.dev/api/species/30/&quot;,
+                &quot;https://swapi.dev/api/species/31/&quot;,
+                &quot;https://swapi.dev/api/species/32/&quot;,
+                &quot;https://swapi.dev/api/species/33/&quot;,
+                &quot;https://swapi.dev/api/species/34/&quot;,
+                &quot;https://swapi.dev/api/species/35/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-20T10:57:57.886000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:18:48.516000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/films/5/&quot;
+        },
+        {
+            &quot;title&quot;: &quot;Revenge of the Sith&quot;,
+            &quot;episode_id&quot;: 3,
+            &quot;opening_crawl&quot;: &quot;War! The Republic is crumbling\r\nunder attacks by the ruthless\r\nSith Lord, Count Dooku.\r\nThere are heroes on both sides.\r\nEvil is everywhere.\r\n\r\nIn a stunning move, the\r\nfiendish droid leader, General\r\nGrievous, has swept into the\r\nRepublic capital and kidnapped\r\nChancellor Palpatine, leader of\r\nthe Galactic Senate.\r\n\r\nAs the Separatist Droid Army\r\nattempts to flee the besieged\r\ncapital with their valuable\r\nhostage, two Jedi Knights lead a\r\ndesperate mission to rescue the\r\ncaptive Chancellor....&quot;,
+            &quot;director&quot;: &quot;George Lucas&quot;,
+            &quot;producer&quot;: &quot;Rick McCallum&quot;,
+            &quot;release_date&quot;: &quot;2005-05-19&quot;,
+            &quot;characters&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/4/&quot;,
+                &quot;https://swapi.dev/api/people/5/&quot;,
+                &quot;https://swapi.dev/api/people/6/&quot;,
+                &quot;https://swapi.dev/api/people/7/&quot;,
+                &quot;https://swapi.dev/api/people/10/&quot;,
+                &quot;https://swapi.dev/api/people/11/&quot;,
+                &quot;https://swapi.dev/api/people/12/&quot;,
+                &quot;https://swapi.dev/api/people/13/&quot;,
+                &quot;https://swapi.dev/api/people/20/&quot;,
+                &quot;https://swapi.dev/api/people/21/&quot;,
+                &quot;https://swapi.dev/api/people/33/&quot;,
+                &quot;https://swapi.dev/api/people/35/&quot;,
+                &quot;https://swapi.dev/api/people/46/&quot;,
+                &quot;https://swapi.dev/api/people/51/&quot;,
+                &quot;https://swapi.dev/api/people/52/&quot;,
+                &quot;https://swapi.dev/api/people/53/&quot;,
+                &quot;https://swapi.dev/api/people/54/&quot;,
+                &quot;https://swapi.dev/api/people/55/&quot;,
+                &quot;https://swapi.dev/api/people/56/&quot;,
+                &quot;https://swapi.dev/api/people/58/&quot;,
+                &quot;https://swapi.dev/api/people/63/&quot;,
+                &quot;https://swapi.dev/api/people/64/&quot;,
+                &quot;https://swapi.dev/api/people/67/&quot;,
+                &quot;https://swapi.dev/api/people/68/&quot;,
+                &quot;https://swapi.dev/api/people/75/&quot;,
+                &quot;https://swapi.dev/api/people/78/&quot;,
+                &quot;https://swapi.dev/api/people/79/&quot;,
+                &quot;https://swapi.dev/api/people/80/&quot;,
+                &quot;https://swapi.dev/api/people/81/&quot;,
+                &quot;https://swapi.dev/api/people/82/&quot;,
+                &quot;https://swapi.dev/api/people/83/&quot;
+            ],
+            &quot;planets&quot;: [
+                &quot;https://swapi.dev/api/planets/1/&quot;,
+                &quot;https://swapi.dev/api/planets/2/&quot;,
+                &quot;https://swapi.dev/api/planets/5/&quot;,
+                &quot;https://swapi.dev/api/planets/8/&quot;,
+                &quot;https://swapi.dev/api/planets/9/&quot;,
+                &quot;https://swapi.dev/api/planets/12/&quot;,
+                &quot;https://swapi.dev/api/planets/13/&quot;,
+                &quot;https://swapi.dev/api/planets/14/&quot;,
+                &quot;https://swapi.dev/api/planets/15/&quot;,
+                &quot;https://swapi.dev/api/planets/16/&quot;,
+                &quot;https://swapi.dev/api/planets/17/&quot;,
+                &quot;https://swapi.dev/api/planets/18/&quot;,
+                &quot;https://swapi.dev/api/planets/19/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/2/&quot;,
+                &quot;https://swapi.dev/api/starships/32/&quot;,
+                &quot;https://swapi.dev/api/starships/48/&quot;,
+                &quot;https://swapi.dev/api/starships/59/&quot;,
+                &quot;https://swapi.dev/api/starships/61/&quot;,
+                &quot;https://swapi.dev/api/starships/63/&quot;,
+                &quot;https://swapi.dev/api/starships/64/&quot;,
+                &quot;https://swapi.dev/api/starships/65/&quot;,
+                &quot;https://swapi.dev/api/starships/66/&quot;,
+                &quot;https://swapi.dev/api/starships/68/&quot;,
+                &quot;https://swapi.dev/api/starships/74/&quot;,
+                &quot;https://swapi.dev/api/starships/75/&quot;
+            ],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/33/&quot;,
+                &quot;https://swapi.dev/api/vehicles/50/&quot;,
+                &quot;https://swapi.dev/api/vehicles/53/&quot;,
+                &quot;https://swapi.dev/api/vehicles/56/&quot;,
+                &quot;https://swapi.dev/api/vehicles/60/&quot;,
+                &quot;https://swapi.dev/api/vehicles/62/&quot;,
+                &quot;https://swapi.dev/api/vehicles/67/&quot;,
+                &quot;https://swapi.dev/api/vehicles/69/&quot;,
+                &quot;https://swapi.dev/api/vehicles/70/&quot;,
+                &quot;https://swapi.dev/api/vehicles/71/&quot;,
+                &quot;https://swapi.dev/api/vehicles/72/&quot;,
+                &quot;https://swapi.dev/api/vehicles/73/&quot;,
+                &quot;https://swapi.dev/api/vehicles/76/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/1/&quot;,
+                &quot;https://swapi.dev/api/species/2/&quot;,
+                &quot;https://swapi.dev/api/species/3/&quot;,
+                &quot;https://swapi.dev/api/species/6/&quot;,
+                &quot;https://swapi.dev/api/species/15/&quot;,
+                &quot;https://swapi.dev/api/species/19/&quot;,
+                &quot;https://swapi.dev/api/species/20/&quot;,
+                &quot;https://swapi.dev/api/species/23/&quot;,
+                &quot;https://swapi.dev/api/species/24/&quot;,
+                &quot;https://swapi.dev/api/species/25/&quot;,
+                &quot;https://swapi.dev/api/species/26/&quot;,
+                &quot;https://swapi.dev/api/species/27/&quot;,
+                &quot;https://swapi.dev/api/species/28/&quot;,
+                &quot;https://swapi.dev/api/species/29/&quot;,
+                &quot;https://swapi.dev/api/species/30/&quot;,
+                &quot;https://swapi.dev/api/species/33/&quot;,
+                &quot;https://swapi.dev/api/species/34/&quot;,
+                &quot;https://swapi.dev/api/species/35/&quot;,
+                &quot;https://swapi.dev/api/species/36/&quot;,
+                &quot;https://swapi.dev/api/species/37/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-20T18:49:38.403000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:47:52.073000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/films/6/&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-films" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-films"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-films"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-films" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-films"></code></pre>
+</span>
+<form id="form-GETapi-swapi-films" data-method="GET"
+      data-path="api/swapi-films"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-films', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-films"
+                    onclick="tryItOut('GETapi-swapi-films');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-films"
+                    onclick="cancelTryOut('GETapi-swapi-films');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-films" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-films</code></b>
+        </p>
+                    </form>
+
+            <h2 id="films-GETapi-swapi-films--id-">GET api/swapi-films/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-films--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-films/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-films/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-films--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 56
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;title&quot;: &quot;A New Hope&quot;,
+    &quot;episode_id&quot;: 4,
+    &quot;opening_crawl&quot;: &quot;It is a period of civil war.\r\nRebel spaceships, striking\r\nfrom a hidden base, have won\r\ntheir first victory against\r\nthe evil Galactic Empire.\r\n\r\nDuring the battle, Rebel\r\nspies managed to steal secret\r\nplans to the Empire&#039;s\r\nultimate weapon, the DEATH\r\nSTAR, an armored space\r\nstation with enough power\r\nto destroy an entire planet.\r\n\r\nPursued by the Empire&#039;s\r\nsinister agents, Princess\r\nLeia races home aboard her\r\nstarship, custodian of the\r\nstolen plans that can save her\r\npeople and restore\r\nfreedom to the galaxy....&quot;,
+    &quot;director&quot;: &quot;George Lucas&quot;,
+    &quot;producer&quot;: &quot;Gary Kurtz, Rick McCallum&quot;,
+    &quot;release_date&quot;: &quot;1977-05-25&quot;,
+    &quot;characters&quot;: [
+        &quot;https://swapi.dev/api/people/1/&quot;,
+        &quot;https://swapi.dev/api/people/2/&quot;,
+        &quot;https://swapi.dev/api/people/3/&quot;,
+        &quot;https://swapi.dev/api/people/4/&quot;,
+        &quot;https://swapi.dev/api/people/5/&quot;,
+        &quot;https://swapi.dev/api/people/6/&quot;,
+        &quot;https://swapi.dev/api/people/7/&quot;,
+        &quot;https://swapi.dev/api/people/8/&quot;,
+        &quot;https://swapi.dev/api/people/9/&quot;,
+        &quot;https://swapi.dev/api/people/10/&quot;,
+        &quot;https://swapi.dev/api/people/12/&quot;,
+        &quot;https://swapi.dev/api/people/13/&quot;,
+        &quot;https://swapi.dev/api/people/14/&quot;,
+        &quot;https://swapi.dev/api/people/15/&quot;,
+        &quot;https://swapi.dev/api/people/16/&quot;,
+        &quot;https://swapi.dev/api/people/18/&quot;,
+        &quot;https://swapi.dev/api/people/19/&quot;,
+        &quot;https://swapi.dev/api/people/81/&quot;
+    ],
+    &quot;planets&quot;: [
+        &quot;https://swapi.dev/api/planets/1/&quot;,
+        &quot;https://swapi.dev/api/planets/2/&quot;,
+        &quot;https://swapi.dev/api/planets/3/&quot;
+    ],
+    &quot;starships&quot;: [
+        &quot;https://swapi.dev/api/starships/2/&quot;,
+        &quot;https://swapi.dev/api/starships/3/&quot;,
+        &quot;https://swapi.dev/api/starships/5/&quot;,
+        &quot;https://swapi.dev/api/starships/9/&quot;,
+        &quot;https://swapi.dev/api/starships/10/&quot;,
+        &quot;https://swapi.dev/api/starships/11/&quot;,
+        &quot;https://swapi.dev/api/starships/12/&quot;,
+        &quot;https://swapi.dev/api/starships/13/&quot;
+    ],
+    &quot;vehicles&quot;: [
+        &quot;https://swapi.dev/api/vehicles/4/&quot;,
+        &quot;https://swapi.dev/api/vehicles/6/&quot;,
+        &quot;https://swapi.dev/api/vehicles/7/&quot;,
+        &quot;https://swapi.dev/api/vehicles/8/&quot;
+    ],
+    &quot;species&quot;: [
+        &quot;https://swapi.dev/api/species/1/&quot;,
+        &quot;https://swapi.dev/api/species/2/&quot;,
+        &quot;https://swapi.dev/api/species/3/&quot;,
+        &quot;https://swapi.dev/api/species/4/&quot;,
+        &quot;https://swapi.dev/api/species/5/&quot;
+    ],
+    &quot;created&quot;: &quot;2014-12-10T14:23:31.880000Z&quot;,
+    &quot;edited&quot;: &quot;2014-12-20T19:49:45.256000Z&quot;,
+    &quot;url&quot;: &quot;https://swapi.dev/api/films/1/&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-films--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-films--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-films--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-films--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-films--id-"></code></pre>
+</span>
+<form id="form-GETapi-swapi-films--id-" data-method="GET"
+      data-path="api/swapi-films/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-films--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-films--id-"
+                    onclick="tryItOut('GETapi-swapi-films--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-films--id-"
+                    onclick="cancelTryOut('GETapi-swapi-films--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-films--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-films/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-swapi-films--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="planets">Planets</h1>
+
+    
+
+            <h2 id="planets-GETapi-swapi-planets">GET api/swapi-planets</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-planets">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-planets" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-planets"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-planets">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 49
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;count&quot;: 60,
+    &quot;next&quot;: &quot;https://swapi.dev/api/planets/?page=2&quot;,
+    &quot;previous&quot;: null,
+    &quot;results&quot;: [
+        {
+            &quot;name&quot;: &quot;Tatooine&quot;,
+            &quot;rotation_period&quot;: &quot;23&quot;,
+            &quot;orbital_period&quot;: &quot;304&quot;,
+            &quot;diameter&quot;: &quot;10465&quot;,
+            &quot;climate&quot;: &quot;arid&quot;,
+            &quot;gravity&quot;: &quot;1 standard&quot;,
+            &quot;terrain&quot;: &quot;desert&quot;,
+            &quot;surface_water&quot;: &quot;1&quot;,
+            &quot;population&quot;: &quot;200000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/4/&quot;,
+                &quot;https://swapi.dev/api/people/6/&quot;,
+                &quot;https://swapi.dev/api/people/7/&quot;,
+                &quot;https://swapi.dev/api/people/8/&quot;,
+                &quot;https://swapi.dev/api/people/9/&quot;,
+                &quot;https://swapi.dev/api/people/11/&quot;,
+                &quot;https://swapi.dev/api/people/43/&quot;,
+                &quot;https://swapi.dev/api/people/62/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-09T13:50:49.641000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.411000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/1/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Alderaan&quot;,
+            &quot;rotation_period&quot;: &quot;24&quot;,
+            &quot;orbital_period&quot;: &quot;364&quot;,
+            &quot;diameter&quot;: &quot;12500&quot;,
+            &quot;climate&quot;: &quot;temperate&quot;,
+            &quot;gravity&quot;: &quot;1 standard&quot;,
+            &quot;terrain&quot;: &quot;grasslands, mountains&quot;,
+            &quot;surface_water&quot;: &quot;40&quot;,
+            &quot;population&quot;: &quot;2000000000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/5/&quot;,
+                &quot;https://swapi.dev/api/people/68/&quot;,
+                &quot;https://swapi.dev/api/people/81/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:35:48.479000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.420000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/2/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Yavin IV&quot;,
+            &quot;rotation_period&quot;: &quot;24&quot;,
+            &quot;orbital_period&quot;: &quot;4818&quot;,
+            &quot;diameter&quot;: &quot;10200&quot;,
+            &quot;climate&quot;: &quot;temperate, tropical&quot;,
+            &quot;gravity&quot;: &quot;1 standard&quot;,
+            &quot;terrain&quot;: &quot;jungle, rainforests&quot;,
+            &quot;surface_water&quot;: &quot;8&quot;,
+            &quot;population&quot;: &quot;1000&quot;,
+            &quot;residents&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:37:19.144000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.421000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/3/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Hoth&quot;,
+            &quot;rotation_period&quot;: &quot;23&quot;,
+            &quot;orbital_period&quot;: &quot;549&quot;,
+            &quot;diameter&quot;: &quot;7200&quot;,
+            &quot;climate&quot;: &quot;frozen&quot;,
+            &quot;gravity&quot;: &quot;1.1 standard&quot;,
+            &quot;terrain&quot;: &quot;tundra, ice caves, mountain ranges&quot;,
+            &quot;surface_water&quot;: &quot;100&quot;,
+            &quot;population&quot;: &quot;unknown&quot;,
+            &quot;residents&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:39:13.934000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.423000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/4/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Dagobah&quot;,
+            &quot;rotation_period&quot;: &quot;23&quot;,
+            &quot;orbital_period&quot;: &quot;341&quot;,
+            &quot;diameter&quot;: &quot;8900&quot;,
+            &quot;climate&quot;: &quot;murky&quot;,
+            &quot;gravity&quot;: &quot;N/A&quot;,
+            &quot;terrain&quot;: &quot;swamp, jungles&quot;,
+            &quot;surface_water&quot;: &quot;8&quot;,
+            &quot;population&quot;: &quot;unknown&quot;,
+            &quot;residents&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:42:22.590000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.425000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/5/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Bespin&quot;,
+            &quot;rotation_period&quot;: &quot;12&quot;,
+            &quot;orbital_period&quot;: &quot;5110&quot;,
+            &quot;diameter&quot;: &quot;118000&quot;,
+            &quot;climate&quot;: &quot;temperate&quot;,
+            &quot;gravity&quot;: &quot;1.5 (surface), 1 standard (Cloud City)&quot;,
+            &quot;terrain&quot;: &quot;gas giant&quot;,
+            &quot;surface_water&quot;: &quot;0&quot;,
+            &quot;population&quot;: &quot;6000000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/26/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:43:55.240000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.427000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/6/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Endor&quot;,
+            &quot;rotation_period&quot;: &quot;18&quot;,
+            &quot;orbital_period&quot;: &quot;402&quot;,
+            &quot;diameter&quot;: &quot;4900&quot;,
+            &quot;climate&quot;: &quot;temperate&quot;,
+            &quot;gravity&quot;: &quot;0.85 standard&quot;,
+            &quot;terrain&quot;: &quot;forests, mountains, lakes&quot;,
+            &quot;surface_water&quot;: &quot;8&quot;,
+            &quot;population&quot;: &quot;30000000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/30/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:50:29.349000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.429000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/7/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Naboo&quot;,
+            &quot;rotation_period&quot;: &quot;26&quot;,
+            &quot;orbital_period&quot;: &quot;312&quot;,
+            &quot;diameter&quot;: &quot;12120&quot;,
+            &quot;climate&quot;: &quot;temperate&quot;,
+            &quot;gravity&quot;: &quot;1 standard&quot;,
+            &quot;terrain&quot;: &quot;grassy hills, swamps, forests, mountains&quot;,
+            &quot;surface_water&quot;: &quot;12&quot;,
+            &quot;population&quot;: &quot;4500000000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/21/&quot;,
+                &quot;https://swapi.dev/api/people/35/&quot;,
+                &quot;https://swapi.dev/api/people/36/&quot;,
+                &quot;https://swapi.dev/api/people/37/&quot;,
+                &quot;https://swapi.dev/api/people/38/&quot;,
+                &quot;https://swapi.dev/api/people/39/&quot;,
+                &quot;https://swapi.dev/api/people/42/&quot;,
+                &quot;https://swapi.dev/api/people/60/&quot;,
+                &quot;https://swapi.dev/api/people/61/&quot;,
+                &quot;https://swapi.dev/api/people/66/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:52:31.066000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.430000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/8/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Coruscant&quot;,
+            &quot;rotation_period&quot;: &quot;24&quot;,
+            &quot;orbital_period&quot;: &quot;368&quot;,
+            &quot;diameter&quot;: &quot;12240&quot;,
+            &quot;climate&quot;: &quot;temperate&quot;,
+            &quot;gravity&quot;: &quot;1 standard&quot;,
+            &quot;terrain&quot;: &quot;cityscape, mountains&quot;,
+            &quot;surface_water&quot;: &quot;unknown&quot;,
+            &quot;population&quot;: &quot;1000000000000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/34/&quot;,
+                &quot;https://swapi.dev/api/people/55/&quot;,
+                &quot;https://swapi.dev/api/people/74/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T11:54:13.921000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.432000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/9/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Kamino&quot;,
+            &quot;rotation_period&quot;: &quot;27&quot;,
+            &quot;orbital_period&quot;: &quot;463&quot;,
+            &quot;diameter&quot;: &quot;19720&quot;,
+            &quot;climate&quot;: &quot;temperate&quot;,
+            &quot;gravity&quot;: &quot;1 standard&quot;,
+            &quot;terrain&quot;: &quot;ocean&quot;,
+            &quot;surface_water&quot;: &quot;100&quot;,
+            &quot;population&quot;: &quot;1000000000&quot;,
+            &quot;residents&quot;: [
+                &quot;https://swapi.dev/api/people/22/&quot;,
+                &quot;https://swapi.dev/api/people/72/&quot;,
+                &quot;https://swapi.dev/api/people/73/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/5/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T12:45:06.577000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T20:58:18.434000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/planets/10/&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-planets" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-planets"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-planets"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-planets" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-planets"></code></pre>
+</span>
+<form id="form-GETapi-swapi-planets" data-method="GET"
+      data-path="api/swapi-planets"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-planets', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-planets"
+                    onclick="tryItOut('GETapi-swapi-planets');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-planets"
+                    onclick="cancelTryOut('GETapi-swapi-planets');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-planets" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-planets</code></b>
+        </p>
+                    </form>
+
+            <h2 id="planets-GETapi-swapi-planets--id-">GET api/swapi-planets/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-planets--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-planets/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-planets/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-planets--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 48
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;name&quot;: &quot;Tatooine&quot;,
+    &quot;rotation_period&quot;: &quot;23&quot;,
+    &quot;orbital_period&quot;: &quot;304&quot;,
+    &quot;diameter&quot;: &quot;10465&quot;,
+    &quot;climate&quot;: &quot;arid&quot;,
+    &quot;gravity&quot;: &quot;1 standard&quot;,
+    &quot;terrain&quot;: &quot;desert&quot;,
+    &quot;surface_water&quot;: &quot;1&quot;,
+    &quot;population&quot;: &quot;200000&quot;,
+    &quot;residents&quot;: [
+        &quot;https://swapi.dev/api/people/1/&quot;,
+        &quot;https://swapi.dev/api/people/2/&quot;,
+        &quot;https://swapi.dev/api/people/4/&quot;,
+        &quot;https://swapi.dev/api/people/6/&quot;,
+        &quot;https://swapi.dev/api/people/7/&quot;,
+        &quot;https://swapi.dev/api/people/8/&quot;,
+        &quot;https://swapi.dev/api/people/9/&quot;,
+        &quot;https://swapi.dev/api/people/11/&quot;,
+        &quot;https://swapi.dev/api/people/43/&quot;,
+        &quot;https://swapi.dev/api/people/62/&quot;
+    ],
+    &quot;films&quot;: [
+        &quot;https://swapi.dev/api/films/1/&quot;,
+        &quot;https://swapi.dev/api/films/3/&quot;,
+        &quot;https://swapi.dev/api/films/4/&quot;,
+        &quot;https://swapi.dev/api/films/5/&quot;,
+        &quot;https://swapi.dev/api/films/6/&quot;
+    ],
+    &quot;created&quot;: &quot;2014-12-09T13:50:49.641000Z&quot;,
+    &quot;edited&quot;: &quot;2014-12-20T20:58:18.411000Z&quot;,
+    &quot;url&quot;: &quot;https://swapi.dev/api/planets/1/&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-planets--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-planets--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-planets--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-planets--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-planets--id-"></code></pre>
+</span>
+<form id="form-GETapi-swapi-planets--id-" data-method="GET"
+      data-path="api/swapi-planets/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-planets--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-planets--id-"
+                    onclick="tryItOut('GETapi-swapi-planets--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-planets--id-"
+                    onclick="cancelTryOut('GETapi-swapi-planets--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-planets--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-planets/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-swapi-planets--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="poeple">Poeple</h1>
+
+    
+
+            <h2 id="poeple-GETapi-swapi-people">GET api/swapi-people</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-people">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-people" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-people"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-people">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;count&quot;: 82,
+    &quot;next&quot;: &quot;https://swapi.dev/api/people/?page=2&quot;,
+    &quot;previous&quot;: null,
+    &quot;results&quot;: [
+        {
+            &quot;name&quot;: &quot;Luke Skywalker&quot;,
+            &quot;height&quot;: &quot;172&quot;,
+            &quot;mass&quot;: &quot;77&quot;,
+            &quot;hair_color&quot;: &quot;blond&quot;,
+            &quot;skin_color&quot;: &quot;fair&quot;,
+            &quot;eye_color&quot;: &quot;blue&quot;,
+            &quot;birth_year&quot;: &quot;19BBY&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/14/&quot;,
+                &quot;https://swapi.dev/api/vehicles/30/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/12/&quot;,
+                &quot;https://swapi.dev/api/starships/22/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-09T13:50:51.644000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:56.891000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/1/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;C-3PO&quot;,
+            &quot;height&quot;: &quot;167&quot;,
+            &quot;mass&quot;: &quot;75&quot;,
+            &quot;hair_color&quot;: &quot;n/a&quot;,
+            &quot;skin_color&quot;: &quot;gold&quot;,
+            &quot;eye_color&quot;: &quot;yellow&quot;,
+            &quot;birth_year&quot;: &quot;112BBY&quot;,
+            &quot;gender&quot;: &quot;n/a&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/2/&quot;
+            ],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [],
+            &quot;created&quot;: &quot;2014-12-10T15:10:51.357000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.309000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/2/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;R2-D2&quot;,
+            &quot;height&quot;: &quot;96&quot;,
+            &quot;mass&quot;: &quot;32&quot;,
+            &quot;hair_color&quot;: &quot;n/a&quot;,
+            &quot;skin_color&quot;: &quot;white, blue&quot;,
+            &quot;eye_color&quot;: &quot;red&quot;,
+            &quot;birth_year&quot;: &quot;33BBY&quot;,
+            &quot;gender&quot;: &quot;n/a&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/8/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/2/&quot;
+            ],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [],
+            &quot;created&quot;: &quot;2014-12-10T15:11:50.376000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.311000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/3/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Darth Vader&quot;,
+            &quot;height&quot;: &quot;202&quot;,
+            &quot;mass&quot;: &quot;136&quot;,
+            &quot;hair_color&quot;: &quot;none&quot;,
+            &quot;skin_color&quot;: &quot;white&quot;,
+            &quot;eye_color&quot;: &quot;yellow&quot;,
+            &quot;birth_year&quot;: &quot;41.9BBY&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/13/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T15:18:20.704000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.313000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/4/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Leia Organa&quot;,
+            &quot;height&quot;: &quot;150&quot;,
+            &quot;mass&quot;: &quot;49&quot;,
+            &quot;hair_color&quot;: &quot;brown&quot;,
+            &quot;skin_color&quot;: &quot;light&quot;,
+            &quot;eye_color&quot;: &quot;brown&quot;,
+            &quot;birth_year&quot;: &quot;19BBY&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/2/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/30/&quot;
+            ],
+            &quot;starships&quot;: [],
+            &quot;created&quot;: &quot;2014-12-10T15:20:09.791000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.315000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/5/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Owen Lars&quot;,
+            &quot;height&quot;: &quot;178&quot;,
+            &quot;mass&quot;: &quot;120&quot;,
+            &quot;hair_color&quot;: &quot;brown, grey&quot;,
+            &quot;skin_color&quot;: &quot;light&quot;,
+            &quot;eye_color&quot;: &quot;blue&quot;,
+            &quot;birth_year&quot;: &quot;52BBY&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [],
+            &quot;created&quot;: &quot;2014-12-10T15:52:14.024000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.317000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/6/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Beru Whitesun lars&quot;,
+            &quot;height&quot;: &quot;165&quot;,
+            &quot;mass&quot;: &quot;75&quot;,
+            &quot;hair_color&quot;: &quot;brown&quot;,
+            &quot;skin_color&quot;: &quot;light&quot;,
+            &quot;eye_color&quot;: &quot;blue&quot;,
+            &quot;birth_year&quot;: &quot;47BBY&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [],
+            &quot;created&quot;: &quot;2014-12-10T15:53:41.121000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.319000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/7/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;R5-D4&quot;,
+            &quot;height&quot;: &quot;97&quot;,
+            &quot;mass&quot;: &quot;32&quot;,
+            &quot;hair_color&quot;: &quot;n/a&quot;,
+            &quot;skin_color&quot;: &quot;white, red&quot;,
+            &quot;eye_color&quot;: &quot;red&quot;,
+            &quot;birth_year&quot;: &quot;unknown&quot;,
+            &quot;gender&quot;: &quot;n/a&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;species&quot;: [
+                &quot;https://swapi.dev/api/species/2/&quot;
+            ],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [],
+            &quot;created&quot;: &quot;2014-12-10T15:57:50.959000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.321000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/8/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Biggs Darklighter&quot;,
+            &quot;height&quot;: &quot;183&quot;,
+            &quot;mass&quot;: &quot;84&quot;,
+            &quot;hair_color&quot;: &quot;black&quot;,
+            &quot;skin_color&quot;: &quot;light&quot;,
+            &quot;eye_color&quot;: &quot;brown&quot;,
+            &quot;birth_year&quot;: &quot;24BBY&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/12/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T15:59:50.509000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.323000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/9/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Obi-Wan Kenobi&quot;,
+            &quot;height&quot;: &quot;182&quot;,
+            &quot;mass&quot;: &quot;77&quot;,
+            &quot;hair_color&quot;: &quot;auburn, white&quot;,
+            &quot;skin_color&quot;: &quot;fair&quot;,
+            &quot;eye_color&quot;: &quot;blue-gray&quot;,
+            &quot;birth_year&quot;: &quot;57BBY&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/20/&quot;,
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;species&quot;: [],
+            &quot;vehicles&quot;: [
+                &quot;https://swapi.dev/api/vehicles/38/&quot;
+            ],
+            &quot;starships&quot;: [
+                &quot;https://swapi.dev/api/starships/48/&quot;,
+                &quot;https://swapi.dev/api/starships/59/&quot;,
+                &quot;https://swapi.dev/api/starships/64/&quot;,
+                &quot;https://swapi.dev/api/starships/65/&quot;,
+                &quot;https://swapi.dev/api/starships/74/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:16:29.192000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:17:50.325000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/people/10/&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-people" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-people"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-people"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-people" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-people"></code></pre>
+</span>
+<form id="form-GETapi-swapi-people" data-method="GET"
+      data-path="api/swapi-people"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-people', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-people"
+                    onclick="tryItOut('GETapi-swapi-people');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-people"
+                    onclick="cancelTryOut('GETapi-swapi-people');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-people" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-people</code></b>
+        </p>
+                    </form>
+
+            <h2 id="poeple-GETapi-swapi-people--id-">GET api/swapi-people/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-people--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-people/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-people/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-people--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;name&quot;: &quot;Luke Skywalker&quot;,
+    &quot;height&quot;: &quot;172&quot;,
+    &quot;mass&quot;: &quot;77&quot;,
+    &quot;hair_color&quot;: &quot;blond&quot;,
+    &quot;skin_color&quot;: &quot;fair&quot;,
+    &quot;eye_color&quot;: &quot;blue&quot;,
+    &quot;birth_year&quot;: &quot;19BBY&quot;,
+    &quot;gender&quot;: &quot;male&quot;,
+    &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/1/&quot;,
+    &quot;films&quot;: [
+        &quot;https://swapi.dev/api/films/1/&quot;,
+        &quot;https://swapi.dev/api/films/2/&quot;,
+        &quot;https://swapi.dev/api/films/3/&quot;,
+        &quot;https://swapi.dev/api/films/6/&quot;
+    ],
+    &quot;species&quot;: [],
+    &quot;vehicles&quot;: [
+        &quot;https://swapi.dev/api/vehicles/14/&quot;,
+        &quot;https://swapi.dev/api/vehicles/30/&quot;
+    ],
+    &quot;starships&quot;: [
+        &quot;https://swapi.dev/api/starships/12/&quot;,
+        &quot;https://swapi.dev/api/starships/22/&quot;
+    ],
+    &quot;created&quot;: &quot;2014-12-09T13:50:51.644000Z&quot;,
+    &quot;edited&quot;: &quot;2014-12-20T21:17:56.891000Z&quot;,
+    &quot;url&quot;: &quot;https://swapi.dev/api/people/1/&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-people--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-people--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-people--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-people--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-people--id-"></code></pre>
+</span>
+<form id="form-GETapi-swapi-people--id-" data-method="GET"
+      data-path="api/swapi-people/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-people--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-people--id-"
+                    onclick="tryItOut('GETapi-swapi-people--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-people--id-"
+                    onclick="cancelTryOut('GETapi-swapi-people--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-people--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-people/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-swapi-people--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="species">Species</h1>
+
+    
+
+            <h2 id="species-GETapi-swapi-species">GET api/swapi-species</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-species">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-species" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-species"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-species">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 51
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;count&quot;: 37,
+    &quot;next&quot;: &quot;https://swapi.dev/api/species/?page=2&quot;,
+    &quot;previous&quot;: null,
+    &quot;results&quot;: [
+        {
+            &quot;name&quot;: &quot;Human&quot;,
+            &quot;classification&quot;: &quot;mammal&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;180&quot;,
+            &quot;skin_colors&quot;: &quot;caucasian, black, asian, hispanic&quot;,
+            &quot;hair_colors&quot;: &quot;blonde, brown, black, red&quot;,
+            &quot;eye_colors&quot;: &quot;brown, blue, green, hazel, grey, amber&quot;,
+            &quot;average_lifespan&quot;: &quot;120&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/9/&quot;,
+            &quot;language&quot;: &quot;Galactic Basic&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/66/&quot;,
+                &quot;https://swapi.dev/api/people/67/&quot;,
+                &quot;https://swapi.dev/api/people/68/&quot;,
+                &quot;https://swapi.dev/api/people/74/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T13:52:11.567000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.136000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/1/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Droid&quot;,
+            &quot;classification&quot;: &quot;artificial&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;n/a&quot;,
+            &quot;skin_colors&quot;: &quot;n/a&quot;,
+            &quot;hair_colors&quot;: &quot;n/a&quot;,
+            &quot;eye_colors&quot;: &quot;n/a&quot;,
+            &quot;average_lifespan&quot;: &quot;indefinite&quot;,
+            &quot;homeworld&quot;: null,
+            &quot;language&quot;: &quot;n/a&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/2/&quot;,
+                &quot;https://swapi.dev/api/people/3/&quot;,
+                &quot;https://swapi.dev/api/people/8/&quot;,
+                &quot;https://swapi.dev/api/people/23/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T15:16:16.259000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.139000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/2/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Wookie&quot;,
+            &quot;classification&quot;: &quot;mammal&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;210&quot;,
+            &quot;skin_colors&quot;: &quot;gray&quot;,
+            &quot;hair_colors&quot;: &quot;black, brown&quot;,
+            &quot;eye_colors&quot;: &quot;blue, green, yellow, brown, golden, red&quot;,
+            &quot;average_lifespan&quot;: &quot;400&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/14/&quot;,
+            &quot;language&quot;: &quot;Shyriiwook&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/13/&quot;,
+                &quot;https://swapi.dev/api/people/80/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:44:31.486000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.142000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/3/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Rodian&quot;,
+            &quot;classification&quot;: &quot;sentient&quot;,
+            &quot;designation&quot;: &quot;reptilian&quot;,
+            &quot;average_height&quot;: &quot;170&quot;,
+            &quot;skin_colors&quot;: &quot;green, blue&quot;,
+            &quot;hair_colors&quot;: &quot;n/a&quot;,
+            &quot;eye_colors&quot;: &quot;black&quot;,
+            &quot;average_lifespan&quot;: &quot;unknown&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/23/&quot;,
+            &quot;language&quot;: &quot;Galatic Basic&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/15/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T17:05:26.471000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.144000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/4/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Hutt&quot;,
+            &quot;classification&quot;: &quot;gastropod&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;300&quot;,
+            &quot;skin_colors&quot;: &quot;green, brown, tan&quot;,
+            &quot;hair_colors&quot;: &quot;n/a&quot;,
+            &quot;eye_colors&quot;: &quot;yellow, red&quot;,
+            &quot;average_lifespan&quot;: &quot;1000&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/24/&quot;,
+            &quot;language&quot;: &quot;Huttese&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/16/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T17:12:50.410000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.146000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/5/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Yoda&#039;s species&quot;,
+            &quot;classification&quot;: &quot;mammal&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;66&quot;,
+            &quot;skin_colors&quot;: &quot;green, yellow&quot;,
+            &quot;hair_colors&quot;: &quot;brown, white&quot;,
+            &quot;eye_colors&quot;: &quot;brown, green, yellow&quot;,
+            &quot;average_lifespan&quot;: &quot;900&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/28/&quot;,
+            &quot;language&quot;: &quot;Galactic basic&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/20/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/4/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:27:22.877000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.148000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/6/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Trandoshan&quot;,
+            &quot;classification&quot;: &quot;reptile&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;200&quot;,
+            &quot;skin_colors&quot;: &quot;brown, green&quot;,
+            &quot;hair_colors&quot;: &quot;none&quot;,
+            &quot;eye_colors&quot;: &quot;yellow, orange&quot;,
+            &quot;average_lifespan&quot;: &quot;unknown&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/29/&quot;,
+            &quot;language&quot;: &quot;Dosh&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/24/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T13:07:47.704000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.151000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/7/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Mon Calamari&quot;,
+            &quot;classification&quot;: &quot;amphibian&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;160&quot;,
+            &quot;skin_colors&quot;: &quot;red, blue, brown, magenta&quot;,
+            &quot;hair_colors&quot;: &quot;none&quot;,
+            &quot;eye_colors&quot;: &quot;yellow&quot;,
+            &quot;average_lifespan&quot;: &quot;unknown&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/31/&quot;,
+            &quot;language&quot;: &quot;Mon Calamarian&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/27/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-18T11:09:52.263000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.153000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/8/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Ewok&quot;,
+            &quot;classification&quot;: &quot;mammal&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;100&quot;,
+            &quot;skin_colors&quot;: &quot;brown&quot;,
+            &quot;hair_colors&quot;: &quot;white, brown, black&quot;,
+            &quot;eye_colors&quot;: &quot;orange, brown&quot;,
+            &quot;average_lifespan&quot;: &quot;unknown&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/7/&quot;,
+            &quot;language&quot;: &quot;Ewokese&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/30/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-18T11:22:00.285000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.155000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/9/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Sullustan&quot;,
+            &quot;classification&quot;: &quot;mammal&quot;,
+            &quot;designation&quot;: &quot;sentient&quot;,
+            &quot;average_height&quot;: &quot;180&quot;,
+            &quot;skin_colors&quot;: &quot;pale&quot;,
+            &quot;hair_colors&quot;: &quot;none&quot;,
+            &quot;eye_colors&quot;: &quot;black&quot;,
+            &quot;average_lifespan&quot;: &quot;unknown&quot;,
+            &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/33/&quot;,
+            &quot;language&quot;: &quot;Sullutese&quot;,
+            &quot;people&quot;: [
+                &quot;https://swapi.dev/api/people/31/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-18T11:26:20.103000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:36:42.157000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/species/10/&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-species" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-species"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-species"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-species" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-species"></code></pre>
+</span>
+<form id="form-GETapi-swapi-species" data-method="GET"
+      data-path="api/swapi-species"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-species', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-species"
+                    onclick="tryItOut('GETapi-swapi-species');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-species"
+                    onclick="cancelTryOut('GETapi-swapi-species');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-species" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-species</code></b>
+        </p>
+                    </form>
+
+            <h2 id="species-GETapi-swapi-species--id-">GET api/swapi-species/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-species--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-species/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-species/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-species--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 50
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;name&quot;: &quot;Human&quot;,
+    &quot;classification&quot;: &quot;mammal&quot;,
+    &quot;designation&quot;: &quot;sentient&quot;,
+    &quot;average_height&quot;: &quot;180&quot;,
+    &quot;skin_colors&quot;: &quot;caucasian, black, asian, hispanic&quot;,
+    &quot;hair_colors&quot;: &quot;blonde, brown, black, red&quot;,
+    &quot;eye_colors&quot;: &quot;brown, blue, green, hazel, grey, amber&quot;,
+    &quot;average_lifespan&quot;: &quot;120&quot;,
+    &quot;homeworld&quot;: &quot;https://swapi.dev/api/planets/9/&quot;,
+    &quot;language&quot;: &quot;Galactic Basic&quot;,
+    &quot;people&quot;: [
+        &quot;https://swapi.dev/api/people/66/&quot;,
+        &quot;https://swapi.dev/api/people/67/&quot;,
+        &quot;https://swapi.dev/api/people/68/&quot;,
+        &quot;https://swapi.dev/api/people/74/&quot;
+    ],
+    &quot;films&quot;: [
+        &quot;https://swapi.dev/api/films/1/&quot;,
+        &quot;https://swapi.dev/api/films/2/&quot;,
+        &quot;https://swapi.dev/api/films/3/&quot;,
+        &quot;https://swapi.dev/api/films/4/&quot;,
+        &quot;https://swapi.dev/api/films/5/&quot;,
+        &quot;https://swapi.dev/api/films/6/&quot;
+    ],
+    &quot;created&quot;: &quot;2014-12-10T13:52:11.567000Z&quot;,
+    &quot;edited&quot;: &quot;2014-12-20T21:36:42.136000Z&quot;,
+    &quot;url&quot;: &quot;https://swapi.dev/api/species/1/&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-species--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-species--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-species--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-species--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-species--id-"></code></pre>
+</span>
+<form id="form-GETapi-swapi-species--id-" data-method="GET"
+      data-path="api/swapi-species/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-species--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-species--id-"
+                    onclick="tryItOut('GETapi-swapi-species--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-species--id-"
+                    onclick="cancelTryOut('GETapi-swapi-species--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-species--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-species/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-swapi-species--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="starships">Starships</h1>
+
+    
+
+            <h2 id="starships-GETapi-swapi-starships">GET api/swapi-starships</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-starships">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-starships" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-starships"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-starships">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;count&quot;: 36,
+    &quot;next&quot;: &quot;https://swapi.dev/api/starships/?page=2&quot;,
+    &quot;previous&quot;: null,
+    &quot;results&quot;: [
+        {
+            &quot;name&quot;: &quot;CR90 corvette&quot;,
+            &quot;model&quot;: &quot;CR90 corvette&quot;,
+            &quot;manufacturer&quot;: &quot;Corellian Engineering Corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;3500000&quot;,
+            &quot;length&quot;: &quot;150&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;950&quot;,
+            &quot;crew&quot;: &quot;30-165&quot;,
+            &quot;passengers&quot;: &quot;600&quot;,
+            &quot;cargo_capacity&quot;: &quot;3000000&quot;,
+            &quot;consumables&quot;: &quot;1 year&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;2.0&quot;,
+            &quot;MGLT&quot;: &quot;60&quot;,
+            &quot;starship_class&quot;: &quot;corvette&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;,
+                &quot;https://swapi.dev/api/films/6/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T14:20:33.369000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.867000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/2/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Star Destroyer&quot;,
+            &quot;model&quot;: &quot;Imperial I-class Star Destroyer&quot;,
+            &quot;manufacturer&quot;: &quot;Kuat Drive Yards&quot;,
+            &quot;cost_in_credits&quot;: &quot;150000000&quot;,
+            &quot;length&quot;: &quot;1,600&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;975&quot;,
+            &quot;crew&quot;: &quot;47,060&quot;,
+            &quot;passengers&quot;: &quot;n/a&quot;,
+            &quot;cargo_capacity&quot;: &quot;36000000&quot;,
+            &quot;consumables&quot;: &quot;2 years&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;2.0&quot;,
+            &quot;MGLT&quot;: &quot;60&quot;,
+            &quot;starship_class&quot;: &quot;Star Destroyer&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T15:08:19.848000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.870000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/3/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Sentinel-class landing craft&quot;,
+            &quot;model&quot;: &quot;Sentinel-class landing craft&quot;,
+            &quot;manufacturer&quot;: &quot;Sienar Fleet Systems, Cyngus Spaceworks&quot;,
+            &quot;cost_in_credits&quot;: &quot;240000&quot;,
+            &quot;length&quot;: &quot;38&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1000&quot;,
+            &quot;crew&quot;: &quot;5&quot;,
+            &quot;passengers&quot;: &quot;75&quot;,
+            &quot;cargo_capacity&quot;: &quot;180000&quot;,
+            &quot;consumables&quot;: &quot;1 month&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;1.0&quot;,
+            &quot;MGLT&quot;: &quot;70&quot;,
+            &quot;starship_class&quot;: &quot;landing craft&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T15:48:00.586000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.873000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/5/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Death Star&quot;,
+            &quot;model&quot;: &quot;DS-1 Orbital Battle Station&quot;,
+            &quot;manufacturer&quot;: &quot;Imperial Department of Military Research, Sienar Fleet Systems&quot;,
+            &quot;cost_in_credits&quot;: &quot;1000000000000&quot;,
+            &quot;length&quot;: &quot;120000&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;n/a&quot;,
+            &quot;crew&quot;: &quot;342,953&quot;,
+            &quot;passengers&quot;: &quot;843,342&quot;,
+            &quot;cargo_capacity&quot;: &quot;1000000000000&quot;,
+            &quot;consumables&quot;: &quot;3 years&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;4.0&quot;,
+            &quot;MGLT&quot;: &quot;10&quot;,
+            &quot;starship_class&quot;: &quot;Deep Space Mobile Battlestation&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:36:50.509000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:26:24.783000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/9/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Millennium Falcon&quot;,
+            &quot;model&quot;: &quot;YT-1300 light freighter&quot;,
+            &quot;manufacturer&quot;: &quot;Corellian Engineering Corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;100000&quot;,
+            &quot;length&quot;: &quot;34.37&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1050&quot;,
+            &quot;crew&quot;: &quot;4&quot;,
+            &quot;passengers&quot;: &quot;6&quot;,
+            &quot;cargo_capacity&quot;: &quot;100000&quot;,
+            &quot;consumables&quot;: &quot;2 months&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;0.5&quot;,
+            &quot;MGLT&quot;: &quot;75&quot;,
+            &quot;starship_class&quot;: &quot;Light freighter&quot;,
+            &quot;pilots&quot;: [
+                &quot;https://swapi.dev/api/people/13/&quot;,
+                &quot;https://swapi.dev/api/people/14/&quot;,
+                &quot;https://swapi.dev/api/people/25/&quot;,
+                &quot;https://swapi.dev/api/people/31/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:59:45.094000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.880000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/10/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Y-wing&quot;,
+            &quot;model&quot;: &quot;BTL Y-wing&quot;,
+            &quot;manufacturer&quot;: &quot;Koensayr Manufacturing&quot;,
+            &quot;cost_in_credits&quot;: &quot;134999&quot;,
+            &quot;length&quot;: &quot;14&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1000km&quot;,
+            &quot;crew&quot;: &quot;2&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;110&quot;,
+            &quot;consumables&quot;: &quot;1 week&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;1.0&quot;,
+            &quot;MGLT&quot;: &quot;80&quot;,
+            &quot;starship_class&quot;: &quot;assault starfighter&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-12T11:00:39.817000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.883000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/11/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;X-wing&quot;,
+            &quot;model&quot;: &quot;T-65 X-wing&quot;,
+            &quot;manufacturer&quot;: &quot;Incom Corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;149999&quot;,
+            &quot;length&quot;: &quot;12.5&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1050&quot;,
+            &quot;crew&quot;: &quot;1&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;110&quot;,
+            &quot;consumables&quot;: &quot;1 week&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;1.0&quot;,
+            &quot;MGLT&quot;: &quot;100&quot;,
+            &quot;starship_class&quot;: &quot;Starfighter&quot;,
+            &quot;pilots&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/9/&quot;,
+                &quot;https://swapi.dev/api/people/18/&quot;,
+                &quot;https://swapi.dev/api/people/19/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-12T11:19:05.340000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.886000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/12/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;TIE Advanced x1&quot;,
+            &quot;model&quot;: &quot;Twin Ion Engine Advanced x1&quot;,
+            &quot;manufacturer&quot;: &quot;Sienar Fleet Systems&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;9.2&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1200&quot;,
+            &quot;crew&quot;: &quot;1&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;150&quot;,
+            &quot;consumables&quot;: &quot;5 days&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;1.0&quot;,
+            &quot;MGLT&quot;: &quot;105&quot;,
+            &quot;starship_class&quot;: &quot;Starfighter&quot;,
+            &quot;pilots&quot;: [
+                &quot;https://swapi.dev/api/people/4/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-12T11:21:32.991000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.889000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/13/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Executor&quot;,
+            &quot;model&quot;: &quot;Executor-class star dreadnought&quot;,
+            &quot;manufacturer&quot;: &quot;Kuat Drive Yards, Fondor Shipyards&quot;,
+            &quot;cost_in_credits&quot;: &quot;1143350000&quot;,
+            &quot;length&quot;: &quot;19000&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;n/a&quot;,
+            &quot;crew&quot;: &quot;279,144&quot;,
+            &quot;passengers&quot;: &quot;38000&quot;,
+            &quot;cargo_capacity&quot;: &quot;250000000&quot;,
+            &quot;consumables&quot;: &quot;6 years&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;2.0&quot;,
+            &quot;MGLT&quot;: &quot;40&quot;,
+            &quot;starship_class&quot;: &quot;Star dreadnought&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:31:42.547000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.893000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/15/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Rebel transport&quot;,
+            &quot;model&quot;: &quot;GR-75 medium transport&quot;,
+            &quot;manufacturer&quot;: &quot;Gallofree Yards, Inc.&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;90&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;650&quot;,
+            &quot;crew&quot;: &quot;6&quot;,
+            &quot;passengers&quot;: &quot;90&quot;,
+            &quot;cargo_capacity&quot;: &quot;19000000&quot;,
+            &quot;consumables&quot;: &quot;6 months&quot;,
+            &quot;hyperdrive_rating&quot;: &quot;4.0&quot;,
+            &quot;MGLT&quot;: &quot;20&quot;,
+            &quot;starship_class&quot;: &quot;Medium transport&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:34:52.264000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:23:49.895000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/starships/17/&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-starships" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-starships"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-starships"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-starships" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-starships"></code></pre>
+</span>
+<form id="form-GETapi-swapi-starships" data-method="GET"
+      data-path="api/swapi-starships"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-starships', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-starships"
+                    onclick="tryItOut('GETapi-swapi-starships');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-starships"
+                    onclick="cancelTryOut('GETapi-swapi-starships');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-starships" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-starships</code></b>
+        </p>
+                    </form>
+
+            <h2 id="starships-GETapi-swapi-starships--id-">GET api/swapi-starships/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-starships--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-starships/2" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-starships/2"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-starships--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 54
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;name&quot;: &quot;CR90 corvette&quot;,
+    &quot;model&quot;: &quot;CR90 corvette&quot;,
+    &quot;manufacturer&quot;: &quot;Corellian Engineering Corporation&quot;,
+    &quot;cost_in_credits&quot;: &quot;3500000&quot;,
+    &quot;length&quot;: &quot;150&quot;,
+    &quot;max_atmosphering_speed&quot;: &quot;950&quot;,
+    &quot;crew&quot;: &quot;30-165&quot;,
+    &quot;passengers&quot;: &quot;600&quot;,
+    &quot;cargo_capacity&quot;: &quot;3000000&quot;,
+    &quot;consumables&quot;: &quot;1 year&quot;,
+    &quot;hyperdrive_rating&quot;: &quot;2.0&quot;,
+    &quot;MGLT&quot;: &quot;60&quot;,
+    &quot;starship_class&quot;: &quot;corvette&quot;,
+    &quot;pilots&quot;: [],
+    &quot;films&quot;: [
+        &quot;https://swapi.dev/api/films/1/&quot;,
+        &quot;https://swapi.dev/api/films/3/&quot;,
+        &quot;https://swapi.dev/api/films/6/&quot;
+    ],
+    &quot;created&quot;: &quot;2014-12-10T14:20:33.369000Z&quot;,
+    &quot;edited&quot;: &quot;2014-12-20T21:23:49.867000Z&quot;,
+    &quot;url&quot;: &quot;https://swapi.dev/api/starships/2/&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-starships--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-starships--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-starships--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-starships--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-starships--id-"></code></pre>
+</span>
+<form id="form-GETapi-swapi-starships--id-" data-method="GET"
+      data-path="api/swapi-starships/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-starships--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-starships--id-"
+                    onclick="tryItOut('GETapi-swapi-starships--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-starships--id-"
+                    onclick="cancelTryOut('GETapi-swapi-starships--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-starships--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-starships/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-swapi-starships--id-"
+               value="2"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="vehicles">Vehicles</h1>
+
+    
+
+            <h2 id="vehicles-GETapi-swapi-vehicles">GET api/swapi-vehicles</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-vehicles">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-vehicles" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-vehicles"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-vehicles">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 53
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;count&quot;: 39,
+    &quot;next&quot;: &quot;https://swapi.dev/api/vehicles/?page=2&quot;,
+    &quot;previous&quot;: null,
+    &quot;results&quot;: [
+        {
+            &quot;name&quot;: &quot;Sand Crawler&quot;,
+            &quot;model&quot;: &quot;Digger Crawler&quot;,
+            &quot;manufacturer&quot;: &quot;Corellia Mining Corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;150000&quot;,
+            &quot;length&quot;: &quot;36.8 &quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;30&quot;,
+            &quot;crew&quot;: &quot;46&quot;,
+            &quot;passengers&quot;: &quot;30&quot;,
+            &quot;cargo_capacity&quot;: &quot;50000&quot;,
+            &quot;consumables&quot;: &quot;2 months&quot;,
+            &quot;vehicle_class&quot;: &quot;wheeled&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/5/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T15:36:25.724000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.661000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/4/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;T-16 skyhopper&quot;,
+            &quot;model&quot;: &quot;T-16 skyhopper&quot;,
+            &quot;manufacturer&quot;: &quot;Incom Corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;14500&quot;,
+            &quot;length&quot;: &quot;10.4 &quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1200&quot;,
+            &quot;crew&quot;: &quot;1&quot;,
+            &quot;passengers&quot;: &quot;1&quot;,
+            &quot;cargo_capacity&quot;: &quot;50&quot;,
+            &quot;consumables&quot;: &quot;0&quot;,
+            &quot;vehicle_class&quot;: &quot;repulsorcraft&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:01:52.434000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.665000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/6/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;X-34 landspeeder&quot;,
+            &quot;model&quot;: &quot;X-34 landspeeder&quot;,
+            &quot;manufacturer&quot;: &quot;SoroSuub Corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;10550&quot;,
+            &quot;length&quot;: &quot;3.4 &quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;250&quot;,
+            &quot;crew&quot;: &quot;1&quot;,
+            &quot;passengers&quot;: &quot;1&quot;,
+            &quot;cargo_capacity&quot;: &quot;5&quot;,
+            &quot;consumables&quot;: &quot;unknown&quot;,
+            &quot;vehicle_class&quot;: &quot;repulsorcraft&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:13:52.586000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.668000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/7/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;TIE/LN starfighter&quot;,
+            &quot;model&quot;: &quot;Twin Ion Engine/Ln Starfighter&quot;,
+            &quot;manufacturer&quot;: &quot;Sienar Fleet Systems&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;6.4&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1200&quot;,
+            &quot;crew&quot;: &quot;1&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;65&quot;,
+            &quot;consumables&quot;: &quot;2 days&quot;,
+            &quot;vehicle_class&quot;: &quot;starfighter&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/1/&quot;,
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-10T16:33:52.860000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.670000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/8/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Snowspeeder&quot;,
+            &quot;model&quot;: &quot;t-47 airspeeder&quot;,
+            &quot;manufacturer&quot;: &quot;Incom corporation&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;4.5&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;650&quot;,
+            &quot;crew&quot;: &quot;2&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;10&quot;,
+            &quot;consumables&quot;: &quot;none&quot;,
+            &quot;vehicle_class&quot;: &quot;airspeeder&quot;,
+            &quot;pilots&quot;: [
+                &quot;https://swapi.dev/api/people/1/&quot;,
+                &quot;https://swapi.dev/api/people/18/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:22:12Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.672000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/14/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;TIE bomber&quot;,
+            &quot;model&quot;: &quot;TIE/sa bomber&quot;,
+            &quot;manufacturer&quot;: &quot;Sienar Fleet Systems&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;7.8&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;850&quot;,
+            &quot;crew&quot;: &quot;1&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;none&quot;,
+            &quot;consumables&quot;: &quot;2 days&quot;,
+            &quot;vehicle_class&quot;: &quot;space/planetary bomber&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:33:15.838000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.675000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/16/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;AT-AT&quot;,
+            &quot;model&quot;: &quot;All Terrain Armored Transport&quot;,
+            &quot;manufacturer&quot;: &quot;Kuat Drive Yards, Imperial Department of Military Research&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;20&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;60&quot;,
+            &quot;crew&quot;: &quot;5&quot;,
+            &quot;passengers&quot;: &quot;40&quot;,
+            &quot;cargo_capacity&quot;: &quot;1000&quot;,
+            &quot;consumables&quot;: &quot;unknown&quot;,
+            &quot;vehicle_class&quot;: &quot;assault walker&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:38:25.937000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.677000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/18/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;AT-ST&quot;,
+            &quot;model&quot;: &quot;All Terrain Scout Transport&quot;,
+            &quot;manufacturer&quot;: &quot;Kuat Drive Yards, Imperial Department of Military Research&quot;,
+            &quot;cost_in_credits&quot;: &quot;unknown&quot;,
+            &quot;length&quot;: &quot;2&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;90&quot;,
+            &quot;crew&quot;: &quot;2&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;200&quot;,
+            &quot;consumables&quot;: &quot;none&quot;,
+            &quot;vehicle_class&quot;: &quot;walker&quot;,
+            &quot;pilots&quot;: [
+                &quot;https://swapi.dev/api/people/13/&quot;
+            ],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;,
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:46:42.384000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.679000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/19/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Storm IV Twin-Pod cloud car&quot;,
+            &quot;model&quot;: &quot;Storm IV Twin-Pod&quot;,
+            &quot;manufacturer&quot;: &quot;Bespin Motors&quot;,
+            &quot;cost_in_credits&quot;: &quot;75000&quot;,
+            &quot;length&quot;: &quot;7&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;1500&quot;,
+            &quot;crew&quot;: &quot;2&quot;,
+            &quot;passengers&quot;: &quot;0&quot;,
+            &quot;cargo_capacity&quot;: &quot;10&quot;,
+            &quot;consumables&quot;: &quot;1 day&quot;,
+            &quot;vehicle_class&quot;: &quot;repulsorcraft&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/2/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-15T12:58:50.530000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.681000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/20/&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Sail barge&quot;,
+            &quot;model&quot;: &quot;Modified Luxury Sail Barge&quot;,
+            &quot;manufacturer&quot;: &quot;Ubrikkian Industries Custom Vehicle Division&quot;,
+            &quot;cost_in_credits&quot;: &quot;285000&quot;,
+            &quot;length&quot;: &quot;30&quot;,
+            &quot;max_atmosphering_speed&quot;: &quot;100&quot;,
+            &quot;crew&quot;: &quot;26&quot;,
+            &quot;passengers&quot;: &quot;500&quot;,
+            &quot;cargo_capacity&quot;: &quot;2000000&quot;,
+            &quot;consumables&quot;: &quot;Live food tanks&quot;,
+            &quot;vehicle_class&quot;: &quot;sail barge&quot;,
+            &quot;pilots&quot;: [],
+            &quot;films&quot;: [
+                &quot;https://swapi.dev/api/films/3/&quot;
+            ],
+            &quot;created&quot;: &quot;2014-12-18T10:44:14.217000Z&quot;,
+            &quot;edited&quot;: &quot;2014-12-20T21:30:21.684000Z&quot;,
+            &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/24/&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-vehicles" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-vehicles"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-vehicles"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-vehicles" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-vehicles"></code></pre>
+</span>
+<form id="form-GETapi-swapi-vehicles" data-method="GET"
+      data-path="api/swapi-vehicles"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-vehicles', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-vehicles"
+                    onclick="tryItOut('GETapi-swapi-vehicles');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-vehicles"
+                    onclick="cancelTryOut('GETapi-swapi-vehicles');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-vehicles" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-vehicles</code></b>
+        </p>
+                    </form>
+
+            <h2 id="vehicles-GETapi-swapi-vehicles--id-">GET api/swapi-vehicles/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-swapi-vehicles--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://typeqast-api.localhost/api/swapi-vehicles/4" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://typeqast-api.localhost/api/swapi-vehicles/4"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-swapi-vehicles--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 52
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;name&quot;: &quot;Sand Crawler&quot;,
+    &quot;model&quot;: &quot;Digger Crawler&quot;,
+    &quot;manufacturer&quot;: &quot;Corellia Mining Corporation&quot;,
+    &quot;cost_in_credits&quot;: &quot;150000&quot;,
+    &quot;length&quot;: &quot;36.8 &quot;,
+    &quot;max_atmosphering_speed&quot;: &quot;30&quot;,
+    &quot;crew&quot;: &quot;46&quot;,
+    &quot;passengers&quot;: &quot;30&quot;,
+    &quot;cargo_capacity&quot;: &quot;50000&quot;,
+    &quot;consumables&quot;: &quot;2 months&quot;,
+    &quot;vehicle_class&quot;: &quot;wheeled&quot;,
+    &quot;pilots&quot;: [],
+    &quot;films&quot;: [
+        &quot;https://swapi.dev/api/films/1/&quot;,
+        &quot;https://swapi.dev/api/films/5/&quot;
+    ],
+    &quot;created&quot;: &quot;2014-12-10T15:36:25.724000Z&quot;,
+    &quot;edited&quot;: &quot;2014-12-20T21:30:21.661000Z&quot;,
+    &quot;url&quot;: &quot;https://swapi.dev/api/vehicles/4/&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-swapi-vehicles--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-swapi-vehicles--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-swapi-vehicles--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-swapi-vehicles--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-swapi-vehicles--id-"></code></pre>
+</span>
+<form id="form-GETapi-swapi-vehicles--id-" data-method="GET"
+      data-path="api/swapi-vehicles/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-swapi-vehicles--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-swapi-vehicles--id-"
+                    onclick="tryItOut('GETapi-swapi-vehicles--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-swapi-vehicles--id-"
+                    onclick="cancelTryOut('GETapi-swapi-vehicles--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-swapi-vehicles--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/swapi-vehicles/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-swapi-vehicles--id-"
+               value="4"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>
