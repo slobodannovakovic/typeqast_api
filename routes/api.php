@@ -23,6 +23,8 @@ use App\Http\Controllers\Api\SwapiStarshipsController;
 
 //filter planets by created date exapmle http://typeqast-api.localhost/api/swapi-planets?filter=1&created=12/04/2014
 
+//filter starships by passengers example http://typeqast-api.localhost/api/swapi-starships?filter=1&passengers=84000
+
 Route::get('swapi-people', [SwapiPeopleController::class, 'index']);
 Route::get('swapi-people/{id}', [SwapiPeopleController::class, 'show']);
 
